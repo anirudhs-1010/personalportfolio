@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Analytics } from "@vercel/analytics/react";
 import Image from 'next/image';
 const skillsList = [
   'C++', 'Java', 'HTML', 'CSS', 'Kubernetes', 'AWS', 'SQL', 'Burp Suite', 'OWASP ZAP', 'DirBuster'
