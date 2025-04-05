@@ -275,8 +275,8 @@ function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-lg mb-4">
-              I'm a passionate software engineer with experience in cloud technologies and hardware integration.
-              My journey in tech has equipped me with a diverse skill set spanning from frontend development to
+              I'm a passionate software engineer with experience in cloud technologies and hardware integration. 
+              My journey in tech has equipped me with a diverse skill set spanning from frontend development to 
               cloud infrastructure management.
             </p>
             <p className="text-lg mb-4">
