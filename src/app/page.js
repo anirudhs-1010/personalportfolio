@@ -434,13 +434,14 @@ Implemented LLM chatbot feature using Gemini API for real-time communication wit
               />
             </div>
             <div className="p-6">
-              <h4 className="text-xl font-bold mb-2 text-blue-400">Personal Website</h4>
+              <h4 className="text-xl font-bold mb-2 text-blue-400">Quantitative Analysis of Protein Structure</h4>
               <p className="text-gray-300 mb-4">
-                Developed a full-stack web application using Next.js, MongoDB, and Tailwind CSS.
+                Worked with Chad Rienstra Lab to develop an automated tool to compare experimental and simualted
+                SSNMR EmRe protein data with ZNCC scores using Python and Bash scripts.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">Viewing Demo</a>
-                <a href="https://github.com/anirudhs1010/PersonalPortfolio" className="text-blue-400 hover:text-blue-300 transition-colors">View Code</a>
+                
+                <a href="https://docs.google.com/document/d/15-mZL5BjQpqe3oDXLElNLAAKJvVx7FYJ/edit?usp=sharing&ouid=114213458967344171946&rtpof=true&sd=true" className="text-blue-400 hover:text-blue-300 transition-colors">View Report</a>
               </div>
             </div>
           </motion.div>
