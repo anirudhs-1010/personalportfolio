@@ -1,8 +1,46 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+function AutoCarousel() {
+  const images = ['/sf.jpg', '/ny.jpeg'];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        key={currentIndex}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={images[currentIndex]}
+          alt={`Slide ${currentIndex + 1}`}
+          width={10000}
+          height={10000}
+          objectFit='cover'
+          className='opacity-30'
+          priority
+        />
+        {/* Optional dark overlay for text contrast */}
+      
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 const skillsList = [
   'C++', 'Java', 'HTML', 'CSS', 'Kubernetes', 'AWS', 'SQL', 'Burp Suite', 'OWASP ZAP', 'DirBuster'
 ];
@@ -199,7 +237,7 @@ function SkillsMarquee() {
 function Home() {
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white font-montserrat">
       <header className="container mx-auto py-8 px-4 flex flex-col md:flex-row justify-between items-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -230,25 +268,36 @@ function Home() {
         </nav>
       </header>
 
-      <section id="hero" className="container mx-auto py-20 px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">Software Developer</h2>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Creating innovative solutions with experiences in backend development, cloud technologies, hardware, and AI.
-          </p>
-          <motion.a
-            href="#projects"
-            className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 py-3 px-8 rounded-full text-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <section
+        id="hero"
+        className="relative flex justify-center item-center  mx-auto min-h-[80vh] text-center overflow-hidden"
+      >
+        {/* Background carousel */}
+        <AutoCarousel />
+
+        {/* Foreground content */}
+        <div className="relative z-10 py-20 px-4 container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
           >
-            View My Work
-          </motion.a>
-        </motion.div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4">
+              Software Developer
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-2xl mx-auto">
+              Creating innovative solutions with experiences in backend development, cloud technologies, hardware, and AI.
+            </p>
+            <motion.a
+              href="#projects"
+              className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 py-3 px-8 rounded-full text-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View My Work
+            </motion.a>
+          </motion.div>
+        </div>
       </section>
 
       <section id="about" className="container mx-auto py-16 px-4">
@@ -285,7 +334,7 @@ function Home() {
             </p>
             <div className="flex gap-4 mt-6">
               <motion.a
-                href="/AnirudhSunil_Resume (5).pdf"
+                href="/AnirudhSunil_Resume.pdf"
                 className="bg-white text-gray-900 py-2 px-6 rounded-full font-medium hover:bg-gray-200 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
