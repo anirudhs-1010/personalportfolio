@@ -162,7 +162,7 @@ const ContactForm = () => {
               name="message"
               rows="6"
               className="block p-2.5 w-full text-sm text-white bg-gray-700 rounded-lg shadow-sm border border-blue-400 focus:ring-blue-500 min-h-[250px] focus:border-blue-500"
-              placeholder="Leave a comment..."
+              placeholder="Looking forward to hearing from you!"
               value={formData.message}
               onChange={handleChange}
               onFocus={handleFocus}
