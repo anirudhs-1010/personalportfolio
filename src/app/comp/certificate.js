@@ -4,17 +4,38 @@ const certifications = [
   {
     title: "CodePath",
     issuer: "CodePath",
-    date: "Jan 2025",
+    date: "Status: In progress",
     badgeUrl: "/codepath_org_logo.jpg",
-    verifyUrl: "https://www.certmetrics.com/amazon/public/verification.aspx", 
+    verifyUrl: "https://www.codepath.org/courses", 
   },
   {
     title: "AI4ALL",
     issuer: "AI4ALL",
-    date: "Jan 2025",
+    date: "Status: In progress",
     badgeUrl: "/ai4all-logo.png",
-    verifyUrl: "https://www.yourverificationlink.com", 
+    verifyUrl: "https://ai-4-all.org/ai4all-ignite/", 
   },
+  {
+    title: "Intro to Machine Learning",
+    issuer: "Kaggle",
+    date: "Issued: March 9, 2024",
+    badgeUrl: "/Kaggle.png",
+    verifyUrl: "https://www.kaggle.com/learn/certification/anirudhs10/intro-to-machine-learning", 
+  },
+  {
+    title: "Cybersecurity",
+    issuer: "Google",
+    date: "Issued: July 7, 2023",
+    badgeUrl: "/Google.png",
+    verifyUrl: "https://coursera.org/share/4dc869a406a5e8333ba0fbf186fadcb3", 
+  },
+  {
+    title: "IT Automation with Python",
+    issuer: "Google",
+    date: "Issued: June 14, 2022",
+    badgeUrl: "/Google.png",
+    verifyUrl: "https://coursera.org/share/041038d781b2f3c041343186f889e078", 
+  }
   
 ];
 
@@ -41,7 +62,7 @@ export default function CertificationCards() {
             </div>
             <span className="text-lg font-semibold text-white mb-2 text-center">{cert.title}</span>
             <span className="text-gray-400 text-sm mb-1 text-center">{cert.issuer}</span>
-            <span className="text-gray-500 text-xs text-center">Issued: {cert.date}</span>
+            <span className="text-gray-500 text-xs text-center">{cert.date}</span>
           </motion.a>
         ))}
       </div>

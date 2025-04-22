@@ -1,17 +1,14 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import Header from './comp/header';
-import Hero from './comp/hero';
 import About from './comp/about';
-import Experience from './comp/work';
-import Projects from './comp/projects';
-import Footer from './comp/footer';
 import CertificationCards from './comp/certificate';
 import ContactForms from './comp/contact';
+import Footer from './comp/footer';
+import Header from './comp/header';
+import Hero from './comp/hero';
+import Projects from './comp/projects';
 import Skills from './comp/skills';
+import Experience from './comp/work';
 
 
 
@@ -29,12 +26,11 @@ function Home() {
 
       <Skills/>
 
+      <CertificationCards/>
+      
       <ContactForms/>
       
-      <CertificationCards/>
-
       
-
 
       <Footer/>
     </div>

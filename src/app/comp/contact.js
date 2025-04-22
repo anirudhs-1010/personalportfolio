@@ -121,7 +121,7 @@ const ContactForm = () => {
             required
           ></textarea>
         </div>
-        <div className="flex flex-col sm:flex-row gap-5 items-center">
+        <div className="flex flex-col sm:flex-row gap-5 items-center justify-between">
           <div className="w-full sm:w-auto">
             <label htmlFor="attachment" className="block mb-2 text-sm font-medium text-blue-400">
               Attachment
