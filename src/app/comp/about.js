@@ -52,7 +52,7 @@ export default function About() {
             I&apos;m a <span className="text-blue-400 font-semibold">passionate software engineer</span> with experience in <span className="text-purple-400 font-semibold">cloud technologies</span> and <span className="text-pink-400 font-semibold">hardware integration</span>. My journey in tech has equipped me with a diverse skill set spanning from backend development to cloud infrastructure management.
           </p>
           <p className="text-lg md:text-xl mb-6 text-gray-200">
-            With a strong foundation in computer science and hands-on experience through internships, I bring a unique perspective to solving complex technical challenges.
+            With a strong foundation in computer science and hands-on experience through internships, I bring a unique perspective to solving complex technical challenges. I'm currently pursuing my undergraduate degree at UIUC studying Mathematics and Computer Science.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
             <motion.a

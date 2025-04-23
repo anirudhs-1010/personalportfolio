@@ -2,14 +2,21 @@ import { motion } from "framer-motion";
 
 const certifications = [
   {
-    title: "CodePath",
+    title: "Cybersecurity (CY102)",
     issuer: "CodePath",
     date: "Status: In progress",
     badgeUrl: "/codepath_org_logo.jpg",
     verifyUrl: "https://www.codepath.org/courses", 
   },
   {
-    title: "AI4ALL",
+    title: "Technical Interview Prep (TIP 102)",
+    issuer: "CodePath",
+    date: "Status: In progress",
+    badgeUrl: "/codepath_org_logo.jpg",
+    verifyUrl: "https://www.codepath.org/courses", 
+  },
+  {
+    title: "Ignite 2025",
     issuer: "AI4ALL",
     date: "Status: In progress",
     badgeUrl: "/ai4all-logo.png",
@@ -21,6 +28,13 @@ const certifications = [
     date: "Issued: March 9, 2024",
     badgeUrl: "/Kaggle.png",
     verifyUrl: "https://www.kaggle.com/learn/certification/anirudhs10/intro-to-machine-learning", 
+  },
+  {
+    title: "Certificate of Acheivement",
+    issuer: "ICPC",
+    date: "Issued: November 4, 2023",
+    badgeUrl: "/ICPC.png",
+    verifyUrl: "/2024-ICPC North Central NA RC-Anirudh Sunil-PLACE.pdf", 
   },
   {
     title: "Cybersecurity",

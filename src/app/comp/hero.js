@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 // AutoCarousel with dark overlay for readability
 function AutoCarousel() {
@@ -63,7 +63,8 @@ export default function Hero() {
             Software Developer
           </h1>
           <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium drop-shadow">
-            Creating innovative solutions with experience in backend development, cloud technologies, hardware, and AI.
+            Creating innovative solutions with experience in backend development, cloud technologies, hardware, and AI. 
+            Seeking internships as an undergraduate student at UIUC.
           </p>
           <motion.a
             href="#projects"
