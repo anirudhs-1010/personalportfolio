@@ -33,7 +33,7 @@ const certifications = [
     title: "Certificate of Acheivement",
     issuer: "ICPC",
     date: "Issued: November 4, 2023",
-    badgeUrl: "/ICPC.png",
+    badgeUrl: "/icpc.png",
     verifyUrl: "/2024-ICPC North Central NA RC-Anirudh Sunil-PLACE.pdf", 
   },
   {
