@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,17 @@ const ContactForm = () => {
     email: '',
   });
   const [loading, setLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState('');
+
+  // Generate CSRF token on component mount
+  useEffect(() => {
+    const token = Math.random().toString(36).substring(2);
+    setCsrfToken(token);
+  }, []);
+
+  // Rate limiting
+  const [lastSubmissionTime, setLastSubmissionTime] = useState(0);
+  const RATE_LIMIT_MS = 60000; // 1 minute
 
   const validateName = (name) => {
     if (!name.trim()) {
@@ -17,6 +28,9 @@ const ContactForm = () => {
     }
     if (!/^[a-zA-Z\s]*$/.test(name)) {
       return 'Name should only contain letters and spaces';
+    }
+    if (name.length > 100) {
+      return 'Name is too long';
     }
     return '';
   };
@@ -29,14 +43,15 @@ const ContactForm = () => {
     if (!emailRegex.test(email)) {
       return 'Please enter a valid email address';
     }
+    if (email.length > 254) {
+      return 'Email is too long';
+    }
     return '';
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
-    
-    // Clear error when user starts typing
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
   };
 
@@ -56,6 +71,13 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Check rate limiting
+    const now = Date.now();
+    if (now - lastSubmissionTime < RATE_LIMIT_MS) {
+      alert('Please wait a minute before submitting again.');
+      return;
+    }
+
     // Validate all fields
     const nameError = validateName(formData.name);
     const emailError = validateEmail(formData.email);
@@ -65,31 +87,31 @@ const ContactForm = () => {
       email: emailError,
     });
 
-    // If there are any errors, don't submit
     if (nameError || emailError) {
       return;
     }
 
     setLoading(true);
 
-    const discordWebhookUrl = 'https://discord.com/api/webhooks/1357970533727211631/L6B6c3UhZ39XIcuL5j3x9af41vOIuOPmML9jEE581sGWIm12aqZgqZ6I3PFHDAqfmQsK';
-
-    const formDataDiscord = new FormData();
-    formDataDiscord.append(
-      'content',
-      `New form submission:\nName: ${formData.name}\nEmail: ${formData.email}`
-    );
-
     try {
-      const response = await fetch(discordWebhookUrl, {
+      // Send to your backend API instead of directly to Discord
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        body: formDataDiscord,
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+        }),
       });
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
+      setLastSubmissionTime(now);
       alert('Form submitted successfully!');
       setFormData({
         name: '',
@@ -100,7 +122,7 @@ const ContactForm = () => {
         email: '',
       });
     } catch (error) {
-      console.error('Error sending form data to Discord:', error);
+      console.error('Error submitting form:', error);
       alert('An error occurred while submitting the form. Please try again later.');
     } finally {
       setLoading(false);
@@ -116,6 +138,7 @@ const ContactForm = () => {
         Thank you for your interest. Please fill out this form to get in contact with me!
       </p>
       <form onSubmit={handleSubmit} className="space-y-7">
+        <input type="hidden" name="csrf_token" value={csrfToken} />
         <div>
           <label className="block mb-2 text-sm font-medium text-blue-400" htmlFor="name">
             Name
@@ -133,6 +156,7 @@ const ContactForm = () => {
             onBlur={handleBlur}
             placeholder="Your Name"
             required
+            maxLength={100}
           />
           {errors.name && (
             <p className="mt-1 text-sm text-red-500">{errors.name}</p>
@@ -155,6 +179,7 @@ const ContactForm = () => {
             onBlur={handleBlur}
             placeholder="your.email@example.com"
             required
+            maxLength={254}
           />
           {errors.email && (
             <p className="mt-1 text-sm text-red-500">{errors.email}</p>
