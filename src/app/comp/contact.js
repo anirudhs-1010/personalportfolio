@@ -46,6 +46,12 @@ const ContactForm = () => {
     if (email.length > 254) {
       return 'Email is too long';
     }
+    // Check for @everyone.com and similar patterns
+    if (email.toLowerCase().includes('@everyone.com') || 
+        email.toLowerCase().includes('@here.com') ||
+        email.toLowerCase().includes('@discord.com')) {
+      return 'Invalid email address';
+    }
     return '';
   };
 

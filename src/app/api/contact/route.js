@@ -64,6 +64,15 @@ export async function POST(request) {
       );
     }
 
+    // Check for @everyone.com and similar patterns
+    const blockedDomains = ['@everyone.com', '@here.com', '@discord.com'];
+    if (blockedDomains.some(domain => email.toLowerCase().includes(domain))) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
+    }
+
     // Send to Discord webhook
     const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
     if (!discordWebhookUrl) {
