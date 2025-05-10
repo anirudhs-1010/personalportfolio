@@ -40,9 +40,24 @@ const sanitizeInput = (input) => {
     .trim();
 };
 
+const validateFormId = (formId) => {
+  if (!formId) return false;
+  
+  // Check if the form ID matches the expected format
+  const formIdRegex = /^form_\d+_(development|production)$/;
+  if (!formIdRegex.test(formId)) return false;
+
+  // Extract timestamp from form ID
+  const timestamp = parseInt(formId.split('_')[1]);
+  const now = Math.floor(Date.now() / 1000);
+  
+  // Check if the form ID is not too old (within 24 hours)
+  return (now - timestamp) < 24 * 60 * 60;
+};
+
 export async function POST(request) {
   try {
-    const headersList = headers();
+    const headersList = await headers();
     const cookieStore = cookies();
     
     // Validate required headers
@@ -95,7 +110,7 @@ export async function POST(request) {
     
     // Validate form ID
     const formId = headersList.get('x-form-id');
-    if (!formId || !validFormIds.has(formId)) {
+    if (!validateFormId(formId)) {
       return NextResponse.json(
         { error: 'Invalid form session' },
         { status: 403 }

@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
+// Generate a stable form ID that won't change between server and client
+const generateStableId = () => {
+  // Use a combination of timestamp and a fixed string to create a stable ID
+  const timestamp = Math.floor(Date.now() / 1000); // Use seconds instead of milliseconds
+  return `form_${timestamp}_${process.env.NODE_ENV}`;
+};
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,7 +19,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState('');
   const [nonce, setNonce] = useState('');
-  const [formId] = useState(() => Math.random().toString(36).substring(2));
+  const [formId] = useState(generateStableId);
 
   // Generate CSRF token and nonce on component mount
   useEffect(() => {
@@ -26,16 +33,18 @@ const ContactForm = () => {
       const form = document.querySelector(`form[data-form-id="${formId}"]`);
       if (form) {
         // Prevent form attribute modification
-        Object.defineProperty(form, 'action', {
-          get: () => '/api/contact',
-          configurable: false,
-          writable: false
-        });
-        Object.defineProperty(form, 'method', {
-          get: () => 'POST',
-          configurable: false,
-          writable: false
-        });
+        try {
+          Object.defineProperty(form, 'action', {
+            get: () => '/api/contact',
+            configurable: false
+          });
+          Object.defineProperty(form, 'method', {
+            get: () => 'POST',
+            configurable: false
+          });
+        } catch (error) {
+          console.warn('Form protection could not be applied:', error);
+        }
       }
     };
 
