@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +12,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState('');
   const [nonce, setNonce] = useState('');
+  const [formId] = useState(() => Math.random().toString(36).substring(2));
 
   // Generate CSRF token and nonce on component mount
   useEffect(() => {
@@ -19,34 +20,67 @@ const ContactForm = () => {
     const nonceValue = Math.random().toString(36).substring(2);
     setCsrfToken(token);
     setNonce(nonceValue);
-  }, []);
+
+    // Add form protection
+    const protectForm = () => {
+      const form = document.querySelector(`form[data-form-id="${formId}"]`);
+      if (form) {
+        // Prevent form attribute modification
+        Object.defineProperty(form, 'action', {
+          get: () => '/api/contact',
+          configurable: false,
+          writable: false
+        });
+        Object.defineProperty(form, 'method', {
+          get: () => 'POST',
+          configurable: false,
+          writable: false
+        });
+      }
+    };
+
+    protectForm();
+    // Re-apply protection periodically
+    const interval = setInterval(protectForm, 1000);
+    return () => clearInterval(interval);
+  }, [formId]);
 
   // Rate limiting
   const [lastSubmissionTime, setLastSubmissionTime] = useState(0);
   const RATE_LIMIT_MS = 60000; // 1 minute
 
+  const sanitizeInput = (input) => {
+    return input
+      .replace(/[<>]/g, '') // Remove < and > to prevent HTML injection
+      .replace(/javascript:/gi, '') // Remove javascript: protocol
+      .replace(/on\w+=/gi, '') // Remove on* event handlers
+      .trim();
+  };
+
   const validateName = (name) => {
-    if (!name.trim()) {
+    const sanitizedName = sanitizeInput(name);
+    if (!sanitizedName) {
       return 'Name is required';
     }
-    if (!/^[a-zA-Z\s]*$/.test(name)) {
+    if (!/^[a-zA-Z\s]{1,100}$/.test(sanitizedName)) {
       return 'Name should only contain letters and spaces';
     }
-    if (name.length > 100) {
+    if (sanitizedName.length > 100) {
       return 'Name is too long';
     }
     return '';
   };
 
   const validateEmail = (email) => {
-    if (!email.trim()) {
+    const sanitizedEmail = sanitizeInput(email);
+    if (!sanitizedEmail) {
       return 'Email is required';
     }
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(sanitizedEmail)) {
       return 'Please enter a valid email address';
     }
-    if (email.length > 254) {
+    if (sanitizedEmail.length > 254) {
       return 'Email is too long';
     }
     
@@ -74,7 +108,7 @@ const ContactForm = () => {
       '@verified'
     ];
 
-    const emailLower = email.toLowerCase();
+    const emailLower = sanitizedEmail.toLowerCase();
     if (blockedPatterns.some(pattern => emailLower.includes(pattern))) {
       return 'Invalid email address';
     }
@@ -88,13 +122,14 @@ const ContactForm = () => {
     return '';
   };
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const sanitizedValue = sanitizeInput(value);
+    setFormData((prevData) => ({ ...prevData, [name]: sanitizedValue }));
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
-  };
+  }, []);
 
-  const handleBlur = (e) => {
+  const handleBlur = useCallback((e) => {
     const { name, value } = e.target;
     let error = '';
     
@@ -105,10 +140,13 @@ const ContactForm = () => {
     }
     
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
-  };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Prevent double submission
+    if (loading) return;
     
     // Check rate limiting
     const now = Date.now();
@@ -144,13 +182,16 @@ const ContactForm = () => {
           'X-CSRF-Token': csrfToken,
           'X-Nonce': submissionNonce,
           'X-Requested-With': 'XMLHttpRequest',
-          'X-Form-Submission': 'true'
+          'X-Form-Submission': 'true',
+          'X-Form-ID': formId
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          nonce: submissionNonce
+          nonce: submissionNonce,
+          formId: formId
         }),
+        credentials: 'same-origin'
       });
 
       if (!response.ok) {
@@ -184,9 +225,15 @@ const ContactForm = () => {
       <p className="mb-8 font-light text-center text-gray-300 sm:text-lg">
         Thank you for your interest. Please fill out this form to get in contact with me!
       </p>
-      <form onSubmit={handleSubmit} className="space-y-7">
+      <form 
+        onSubmit={handleSubmit} 
+        className="space-y-7"
+        data-form-id={formId}
+        autoComplete="off"
+      >
         <input type="hidden" name="csrf_token" value={csrfToken} />
         <input type="hidden" name="nonce" value={nonce} />
+        <input type="hidden" name="form_id" value={formId} />
         <div>
           <label className="block mb-2 text-sm font-medium text-blue-400" htmlFor="name">
             Name
@@ -205,6 +252,7 @@ const ContactForm = () => {
             placeholder="Your Name"
             required
             maxLength={100}
+            pattern="[a-zA-Z\s]*"
           />
           {errors.name && (
             <p className="mt-1 text-sm text-red-500">{errors.name}</p>

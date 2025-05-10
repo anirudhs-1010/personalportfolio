@@ -1,4 +1,4 @@
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 // Store rate limiting data in memory (consider using Redis in production)
@@ -10,26 +10,48 @@ const MAX_REQUESTS = 5; // 5 requests per hour per IP
 const usedNonces = new Set();
 const NONCE_EXPIRY = 5 * 60 * 1000; // 5 minutes
 
-// Clean up expired nonces periodically
+// Store form IDs (consider using Redis in production)
+const validFormIds = new Set();
+const FORM_ID_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
+
+// Clean up expired data periodically
 setInterval(() => {
   const now = Date.now();
+  // Clean up nonces
   for (const [nonce, timestamp] of usedNonces.entries()) {
     if (now - timestamp > NONCE_EXPIRY) {
       usedNonces.delete(nonce);
     }
   }
+  // Clean up form IDs
+  for (const [formId, timestamp] of validFormIds.entries()) {
+    if (now - timestamp > FORM_ID_EXPIRY) {
+      validFormIds.delete(formId);
+    }
+  }
 }, 60000); // Clean up every minute
+
+const sanitizeInput = (input) => {
+  if (typeof input !== 'string') return '';
+  return input
+    .replace(/[<>]/g, '') // Remove < and > to prevent HTML injection
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, '') // Remove on* event handlers
+    .trim();
+};
 
 export async function POST(request) {
   try {
     const headersList = headers();
+    const cookieStore = cookies();
     
     // Validate required headers
     const requiredHeaders = [
       'x-csrf-token',
       'x-nonce',
       'x-requested-with',
-      'x-form-submission'
+      'x-form-submission',
+      'x-form-id'
     ];
 
     for (const header of requiredHeaders) {
@@ -71,6 +93,15 @@ export async function POST(request) {
     // Get request body
     const body = await request.json();
     
+    // Validate form ID
+    const formId = headersList.get('x-form-id');
+    if (!formId || !validFormIds.has(formId)) {
+      return NextResponse.json(
+        { error: 'Invalid form session' },
+        { status: 403 }
+      );
+    }
+
     // Validate nonce
     const nonce = headersList.get('x-nonce');
     if (!nonce || usedNonces.has(nonce)) {
@@ -102,8 +133,12 @@ export async function POST(request) {
       );
     }
 
+    // Sanitize inputs
+    const sanitizedName = sanitizeInput(name);
+    const sanitizedEmail = sanitizeInput(email);
+
     // Validate name
-    if (!/^[a-zA-Z\s]{1,100}$/.test(name)) {
+    if (!/^[a-zA-Z\s]{1,100}$/.test(sanitizedName)) {
       return NextResponse.json(
         { error: 'Invalid name format' },
         { status: 400 }
@@ -111,7 +146,7 @@ export async function POST(request) {
     }
 
     // Validate email
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(sanitizedEmail)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
@@ -142,7 +177,7 @@ export async function POST(request) {
       '@verified'
     ];
 
-    const emailLower = email.toLowerCase();
+    const emailLower = sanitizedEmail.toLowerCase();
     if (blockedPatterns.some(pattern => emailLower.includes(pattern))) {
       return NextResponse.json(
         { error: 'Invalid email address' },
@@ -175,7 +210,7 @@ export async function POST(request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        content: `New form submission:\nName: ${name}\nEmail: ${email}`,
+        content: `New form submission:\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}`,
       }),
     });
 
