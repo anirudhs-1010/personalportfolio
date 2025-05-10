@@ -64,9 +64,41 @@ export async function POST(request) {
       );
     }
 
-    // Check for @everyone.com and similar patterns
-    const blockedDomains = ['@everyone.com', '@here.com', '@discord.com'];
-    if (blockedDomains.some(domain => email.toLowerCase().includes(domain))) {
+    // Check for @everyone and similar patterns
+    const blockedPatterns = [
+      '@everyone',
+      '@here',
+      '@discord',
+      '@channel',
+      '@role',
+      '@admin',
+      '@moderator',
+      '@staff',
+      '@support',
+      '@help',
+      '@system',
+      '@bot',
+      '@webhook',
+      '@api',
+      '@server',
+      '@team',
+      '@group',
+      '@community',
+      '@official',
+      '@verified'
+    ];
+
+    const emailLower = email.toLowerCase();
+    if (blockedPatterns.some(pattern => emailLower.includes(pattern))) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
+    }
+
+    // Check for common TLD variations
+    const blockedTLDs = ['.con', '.org', '.net', '.io', '.app', '.dev', '.xyz', '.online', '.site', '.website'];
+    if (blockedTLDs.some(tld => emailLower.endsWith(tld))) {
       return NextResponse.json(
         { error: 'Invalid email address' },
         { status: 400 }

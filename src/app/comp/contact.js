@@ -46,12 +46,42 @@ const ContactForm = () => {
     if (email.length > 254) {
       return 'Email is too long';
     }
-    // Check for @everyone.com and similar patterns
-    if (email.toLowerCase().includes('@everyone.com') || 
-        email.toLowerCase().includes('@here.com') ||
-        email.toLowerCase().includes('@discord.com')) {
+    
+    // Check for @everyone and similar patterns
+    const blockedPatterns = [
+      '@everyone',
+      '@here',
+      '@discord',
+      '@channel',
+      '@role',
+      '@admin',
+      '@moderator',
+      '@staff',
+      '@support',
+      '@help',
+      '@system',
+      '@bot',
+      '@webhook',
+      '@api',
+      '@server',
+      '@team',
+      '@group',
+      '@community',
+      '@official',
+      '@verified'
+    ];
+
+    const emailLower = email.toLowerCase();
+    if (blockedPatterns.some(pattern => emailLower.includes(pattern))) {
       return 'Invalid email address';
     }
+
+    // Check for common TLD variations
+    const blockedTLDs = ['.con', '.org', '.net', '.io', '.app', '.dev', '.xyz', '.online', '.site', '.website'];
+    if (blockedTLDs.some(tld => emailLower.endsWith(tld))) {
+      return 'Invalid email address';
+    }
+
     return '';
   };
 
