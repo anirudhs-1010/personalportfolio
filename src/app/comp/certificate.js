@@ -6,14 +6,14 @@ const certifications = [
     issuer: "CodePath",
     date: "Status: In progress",
     badgeUrl: "/codepath_org_logo.jpg",
-    verifyUrl: "https://www.codepath.org/courses", 
+    verifyUrl: "/Cybersecurity.png", 
   },
   {
     title: "Technical Interview Prep (TIP 102)",
     issuer: "CodePath",
     date: "Status: In progress",
     badgeUrl: "/codepath_org_logo.jpg",
-    verifyUrl: "https://www.codepath.org/courses", 
+    verifyUrl: "/TIP.png", 
   },
   {
     title: "Ignite 2025",

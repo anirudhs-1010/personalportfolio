@@ -3,6 +3,15 @@ import Image from "next/image";
 
 const projectList = [
   {
+    title: "Rankd",
+    image: "/RankdTitle.png",
+    alt: "Rankd",
+    description: `Built using Supabase, NextJS, and Tailwind. Used ELO algorithm to calculate rankings for companies and characters for leaderboard display. Currently has 100+ users and more than  `,
+    links: [
+      { label: "View Website", url: "https://rankdgame.vercel.app/" }
+    ],
+  },
+  {
     title: "PoseMind AI: Contextual Yoga Recommender",
     image: "/project3.png",
     alt: "PoseMindAI",
