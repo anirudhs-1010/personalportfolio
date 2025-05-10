@@ -11,11 +11,14 @@ const ContactForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState('');
+  const [nonce, setNonce] = useState('');
 
-  // Generate CSRF token on component mount
+  // Generate CSRF token and nonce on component mount
   useEffect(() => {
     const token = Math.random().toString(36).substring(2);
+    const nonceValue = Math.random().toString(36).substring(2);
     setCsrfToken(token);
+    setNonce(nonceValue);
   }, []);
 
   // Rate limiting
@@ -130,21 +133,29 @@ const ContactForm = () => {
     setLoading(true);
 
     try {
-      // Send to your backend API instead of directly to Discord
+      // Generate a new nonce for this submission
+      const submissionNonce = Math.random().toString(36).substring(2);
+      setNonce(submissionNonce);
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': csrfToken,
+          'X-Nonce': submissionNonce,
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-Form-Submission': 'true'
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          nonce: submissionNonce
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const data = await response.json();
+        throw new Error(data.error || 'Network response was not ok');
       }
 
       setLastSubmissionTime(now);
@@ -159,7 +170,7 @@ const ContactForm = () => {
       });
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('An error occurred while submitting the form. Please try again later.');
+      alert(error.message || 'An error occurred while submitting the form. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -175,6 +186,7 @@ const ContactForm = () => {
       </p>
       <form onSubmit={handleSubmit} className="space-y-7">
         <input type="hidden" name="csrf_token" value={csrfToken} />
+        <input type="hidden" name="nonce" value={nonce} />
         <div>
           <label className="block mb-2 text-sm font-medium text-blue-400" htmlFor="name">
             Name

@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 // Store rate limiting data in memory (consider using Redis in production)
@@ -5,10 +6,51 @@ const rateLimit = new Map();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 const MAX_REQUESTS = 5; // 5 requests per hour per IP
 
+// Store used nonces (consider using Redis in production)
+const usedNonces = new Set();
+const NONCE_EXPIRY = 5 * 60 * 1000; // 5 minutes
+
+// Clean up expired nonces periodically
+setInterval(() => {
+  const now = Date.now();
+  for (const [nonce, timestamp] of usedNonces.entries()) {
+    if (now - timestamp > NONCE_EXPIRY) {
+      usedNonces.delete(nonce);
+    }
+  }
+}, 60000); // Clean up every minute
+
 export async function POST(request) {
   try {
+    const headersList = headers();
+    
+    // Validate required headers
+    const requiredHeaders = [
+      'x-csrf-token',
+      'x-nonce',
+      'x-requested-with',
+      'x-form-submission'
+    ];
+
+    for (const header of requiredHeaders) {
+      if (!headersList.get(header)) {
+        return NextResponse.json(
+          { error: 'Invalid request headers' },
+          { status: 403 }
+        );
+      }
+    }
+
+    // Validate X-Requested-With header
+    if (headersList.get('x-requested-with') !== 'XMLHttpRequest') {
+      return NextResponse.json(
+        { error: 'Invalid request type' },
+        { status: 403 }
+      );
+    }
+
     // Get client IP
-    const ip = request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = headersList.get('x-forwarded-for') || 'unknown';
     
     // Check rate limit
     const now = Date.now();
@@ -29,8 +71,20 @@ export async function POST(request) {
     // Get request body
     const body = await request.json();
     
+    // Validate nonce
+    const nonce = headersList.get('x-nonce');
+    if (!nonce || usedNonces.has(nonce)) {
+      return NextResponse.json(
+        { error: 'Invalid or expired request' },
+        { status: 403 }
+      );
+    }
+    
+    // Store nonce with timestamp
+    usedNonces.add(nonce);
+
     // Validate CSRF token
-    const csrfToken = request.headers.get('x-csrf-token');
+    const csrfToken = headersList.get('x-csrf-token');
     if (!csrfToken) {
       return NextResponse.json(
         { error: 'Invalid request' },
