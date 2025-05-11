@@ -5,6 +5,7 @@ const experiences = [
   {
     title: "Cloud Engineering Intern",
     company: "Prancer.io",
+    companyUrl: "https://prancer.io",
     logo: "/prancer_io_logo.jpg",
     date: "Summer 2022",
     bullets: [
@@ -16,6 +17,7 @@ const experiences = [
   {
     title: "Software and Systems Development Intern",
     company: "Trydan Tech",
+    companyUrl: "https://trydantech.com",
     logo: "/trdtech.jpg",
     date: "Summer 2024",
     bullets: [
@@ -59,7 +61,14 @@ export default function Experience() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                   <div>
                     <h4 className="text-lg font-semibold text-blue-300">{exp.title}</h4>
-                    <p className="text-gray-300 font-medium">{exp.company}</p>
+                    <a 
+                      href={exp.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 font-medium hover:text-blue-300 transition-colors"
+                    >
+                      {exp.company}
+                    </a>
                   </div>
                   <p className="text-sm font-semibold text-gray-400 mt-2 md:mt-0 md:text-right">{exp.date}</p>
                 </div>
