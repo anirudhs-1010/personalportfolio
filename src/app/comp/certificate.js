@@ -20,7 +20,7 @@ const certifications = [
     issuer: "AI4ALL",
     date: "Status: In progress",
     badgeUrl: "/ai4all-logo.png",
-    verifyUrl: "https://ai-4-all.org/ai4all-ignite/", 
+    verifyUrl: "/AI4ALL.jpeg", 
   },
   {
     title: "Intro to Machine Learning",
