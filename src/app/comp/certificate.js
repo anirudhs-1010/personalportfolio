@@ -22,6 +22,7 @@ const certifications = [
     badgeUrl: "/ai4all-logo.png",
     verifyUrl: "/AI4ALL.jpeg", 
   },
+  
   {
     title: "Intro to Machine Learning",
     issuer: "Kaggle",
@@ -37,6 +38,12 @@ const certifications = [
     verifyUrl: "/2024-ICPC North Central NA RC-Anirudh Sunil-PLACE.pdf", 
   },
   {
+    title: "USACO Silver",
+    issuer: "USA Computing Olympiad",
+    badgeUrl: "/logo-usaco.png",
+    verifyUrl: "/usaco.png", 
+  },
+  {
     title: "Cybersecurity",
     issuer: "Google",
     date: "Issued: July 7, 2023",
@@ -49,6 +56,11 @@ const certifications = [
     date: "Issued: June 14, 2022",
     badgeUrl: "/Google.png",
     verifyUrl: "https://coursera.org/share/041038d781b2f3c041343186f889e078", 
+  },{
+    title: "Breath of Purity - 2nd Place winner",
+    issuer: "FrontierHacks",
+    badgeUrl: "frontierhacks.png",
+    verifyUrl: "https://devpost.com/software/a-breath-of-purity-t7fd8u", 
   }
   
 ];
@@ -56,7 +68,7 @@ const certifications = [
 export default function CertificationCards() {
   return (
     <section className="my-12">
-      <h4 className="text-2xl font-bold mb-6 text-blue-400 text-center">Certifications</h4>
+      <h4 className="text-2xl font-bold mb-6 text-blue-400 text-center">Certificates/Awards</h4>
       <div className="flex flex-wrap justify-center gap-8">
         {certifications.map((cert, idx) => (
           <motion.a
