@@ -6,8 +6,9 @@ const experiences = [
     title: "Incoming Software Engineering Intern",
     company: "Venu AI",
     companyUrl: "https://www.venu3d.com/",
-    logo: "/VenuAI.png",
+    logo: "/venu3d_logo.jpeg",
     date: "Summer 2025 - Current",
+    subtitle: "YC W21",
   },
   {
     title: "Software and Systems Development Intern",
@@ -62,8 +63,7 @@ export default function Experience() {
                   alt={`${exp.company} logo`}
                   width={56}
                   height={56}
-                  className="object-contain p-2"
-                  priority={exp.company === "Venu AI"}
+                  className="object-contain"
                 />
               </div>
               {/* Experience Content */}
@@ -79,6 +79,9 @@ export default function Experience() {
                     >
                       {exp.company}
                     </a>
+                    {exp.subtitle && (
+                      <p className="text-sm text-gray-400">{exp.subtitle}</p>
+                    )}
                   </div>
                   <p className="text-sm font-semibold text-gray-400 mt-2 md:mt-0 md:text-right">{exp.date}</p>
                 </div>

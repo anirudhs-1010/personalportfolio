@@ -2,9 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 // Generate a stable form ID that won't change between server and client
 const generateStableId = () => {
-  // Use a combination of timestamp and a fixed string to create a stable ID
-  const timestamp = Math.floor(Date.now() / 1000); // Use seconds instead of milliseconds
-  return `form_${timestamp}_${process.env.NODE_ENV}`;
+  // Use a fixed string for the form ID
+  return `contact_form_${process.env.NODE_ENV}`;
 };
 
 const ContactForm = () => {
