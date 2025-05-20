@@ -3,15 +3,17 @@ import Image from "next/image";
 
 const experiences = [
   {
-    title: "Cloud Engineering Intern",
+    title: "Software Engineering Intern - Cloud Security",
     company: "Prancer.io",
     companyUrl: "https://prancer.io",
     logo: "/prancer_io_logo.jpg",
     date: "Summer 2022",
     bullets: [
-      "Developed and maintained cloud infrastructure using AWS services.",
-      "Implemented CI/CD pipelines for automated deployment.",
-      "Collaborated with cross-functional teams to optimize cloud resources.",
+      "Debugged Amazon Web Services S3 buckets and permissions to organize configuration layout, improving data access efficiency",
+      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of pod clusters, containers, and nodes",
+      "Established secure connections to regulate SQL databases, successfully preventing injection attacks and ensuring data integrity",
+      "Utilized Shift Left Security tools such as Burp Suite proxy, OWASP ZAP, and DirBuster to secure websites, reducing vulnerabilities and enhancing security posture",
+      "Enhanced understanding of infrastructure, cloud offerings, and DevOps as code concepts, leading to the development of more effective cloud security solutions"
     ],
   },
   {
@@ -21,9 +23,9 @@ const experiences = [
     logo: "/trdtech.jpg",
     date: "Summer 2024",
     bullets: [
-      "Assisted in designing and testing hardware components.",
-      "Developed firmware for embedded systems.",
-      "Created documentation for hardware integration processes.",
+      "Leveraged CAN communication protocols in Python using cantools modules to collect data for the EV scooter division XSTRAD, ensuring accurate testing with Synchronous Reluctance motor via Raspberry Pi's SPI interface and 2CH CAN FD HAT, which improved data accuracy and testing efficiency",
+      "Decoded bits from a DBC file and organized data in a CSV format, facilitating effective analysis and identification of correlations among parameters such as speed, temperature, and phase current, which enhanced data-driven decision-making",
+      "Collaborated with peers to analyze 10,000 data points across 26 motor variables, improving code review and quality assurance practices through detailed analysis and teamwork, which led to enhanced software reliability and performance"
     ],
   },
   
