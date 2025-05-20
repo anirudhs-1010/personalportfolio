@@ -3,18 +3,11 @@ import Image from "next/image";
 
 const experiences = [
   {
-    title: "Software Engineering Intern - Cloud Security",
-    company: "Prancer.io",
-    companyUrl: "https://prancer.io",
-    logo: "/prancer_io_logo.jpg",
-    date: "Summer 2022",
-    bullets: [
-      "Debugged Amazon Web Services S3 buckets and permissions to organize configuration layout, improving data access efficiency",
-      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of pod clusters, containers, and nodes",
-      "Established secure connections to regulate SQL databases, successfully preventing injection attacks and ensuring data integrity",
-      "Utilized Shift Left Security tools such as Burp Suite proxy, OWASP ZAP, and DirBuster to secure websites, reducing vulnerabilities and enhancing security posture",
-      "Enhanced understanding of infrastructure, cloud offerings, and DevOps as code concepts, leading to the development of more effective cloud security solutions"
-    ],
+    title: "Incoming Software Engineering Intern",
+    company: "Venu AI",
+    companyUrl: "https://www.venu3d.com/",
+    logo: "/VenuAI.png",
+    date: "Summer 2025 - Current",
   },
   {
     title: "Software and Systems Development Intern",
@@ -26,6 +19,20 @@ const experiences = [
       "Leveraged CAN communication protocols in Python using cantools modules to collect data for the EV scooter division XSTRAD, ensuring accurate testing with Synchronous Reluctance motor via Raspberry Pi's SPI interface and 2CH CAN FD HAT, which improved data accuracy and testing efficiency",
       "Decoded bits from a DBC file and organized data in a CSV format, facilitating effective analysis and identification of correlations among parameters such as speed, temperature, and phase current, which enhanced data-driven decision-making",
       "Collaborated with peers to analyze 10,000 data points across 26 motor variables, improving code review and quality assurance practices through detailed analysis and teamwork, which led to enhanced software reliability and performance"
+    ],
+  },
+  {
+    title: "Software Engineering Intern - Cloud Security",
+    company: "Prancer.io",
+    companyUrl: "https://prancer.io",
+    logo: "/prancer_io_logo.jpg",
+    date: "Summer 2022",
+    bullets: [
+      "Debugged Amazon Web Services S3 buckets and permissions to organize configuration layout, improving data access efficiency",
+      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of pod clusters, containers, and nodes",
+      "Established secure connections to regulate SQL databases, successfully preventing injection attacks and ensuring data integrity",
+      "Utilized Shift Left Security tools such as Burp Suite proxy, OWASP ZAP, and DirBuster to secure websites, reducing vulnerabilities and enhancing security posture",
+      "Enhanced understanding of infrastructure, cloud offerings, and DevOps as code concepts, leading to the development of more effective cloud security solutions"
     ],
   },
   
@@ -55,7 +62,8 @@ export default function Experience() {
                   alt={`${exp.company} logo`}
                   width={56}
                   height={56}
-                  className="object-contain"
+                  className="object-contain p-2"
+                  priority={exp.company === "Venu AI"}
                 />
               </div>
               {/* Experience Content */}
@@ -74,11 +82,13 @@ export default function Experience() {
                   </div>
                   <p className="text-sm font-semibold text-gray-400 mt-2 md:mt-0 md:text-right">{exp.date}</p>
                 </div>
-                <ul className="list-disc list-inside space-y-2 text-gray-200 pl-2">
-                  {exp.bullets.map((bullet, i) => (
-                    <li key={i}>{bullet}</li>
-                  ))}
-                </ul>
+                {exp.bullets && (
+                  <ul className="list-disc list-inside space-y-2 text-gray-200 pl-2">
+                    {exp.bullets.map((bullet, i) => (
+                      <li key={i}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </motion.div>
           ))}
