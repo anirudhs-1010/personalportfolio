@@ -80,7 +80,16 @@ export default function Experience() {
                       {exp.company}
                     </a>
                     {exp.subtitle && (
-                      <p className="text-sm text-gray-400">{exp.subtitle}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Image
+                          src="/YClogo.png"
+                          alt="Y Combinator"
+                          width={16}
+                          height={16}
+                          className="object-contain"
+                        />
+                        <p className="text-sm text-gray-400">{exp.subtitle}</p>
+                      </div>
                     )}
                   </div>
                   <p className="text-sm font-semibold text-gray-400 mt-2 md:mt-0 md:text-right">{exp.date}</p>
