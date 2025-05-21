@@ -9,6 +9,7 @@ const navLinks = [
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Resume', href: '/AnirudhSunil_Resume.pdf', external: true },
 ];
 
 export default function Header() {
@@ -47,6 +48,10 @@ export default function Header() {
                       before:rounded-full before:transition-all before:duration-300
                       hover:before:w-full hover:text-blue-300"
                     style={{ overflow: 'hidden' }}
+                    {...(link.external ? {
+                      target: "_blank",
+                      rel: "noopener noreferrer"
+                    } : {})}
                   >
                     {link.name}
                   </a>
@@ -82,6 +87,10 @@ export default function Header() {
                     href={link.href}
                     className="block text-lg font-medium text-white px-2 py-2 rounded hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition"
                     onClick={() => setMenuOpen(false)}
+                    {...(link.external ? {
+                      target: "_blank",
+                      rel: "noopener noreferrer"
+                    } : {})}
                   >
                     {link.name}
                   </a>
