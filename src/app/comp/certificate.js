@@ -2,6 +2,13 @@ import { motion } from "framer-motion";
 
 const certifications = [
   {
+    title: "Section Leader",
+    issuer: "CodeInPlace",
+    date: "Status: In progress",
+    badgeUrl: "/codeinplace.png",
+    verifyUrl: "/CodeInPlaceConf.png", 
+  },
+  {
     title: "Cybersecurity (CY102)",
     issuer: "CodePath",
     date: "Status: In progress",
