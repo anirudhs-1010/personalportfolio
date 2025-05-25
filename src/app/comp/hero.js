@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // AutoCarousel with dark overlay for readability
 function AutoCarousel() {
-  const images = ["/sf.jpg", "/ny.jpeg"];
+  const images = ["/mecs1.jpeg", "/mecs2.jpeg"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
