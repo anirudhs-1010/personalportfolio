@@ -16,6 +16,15 @@ const projectList = [
     ],
   },
   {
+    title: "LLMJudge",
+    image: "/LLMBenchmark.png",
+    alt: "LLMJudge",
+    description: `Developed a web app with Firebase, TypeScript, and Tailwind CSS that benchmarks prompts and LLM outputs on length and tone. Evaluated Gemini 2.0 Flash output with Perplexity Sonar, R1-1776, and Llama 3 with API calls and optimized. Stored data for prior prompts and scores in CSV and visualized overall evaluation scores with bar chart.`,
+    links: [
+      { label: "View Website", url: "https://studio--llm-judge-4sh1r.us-central1.hosted.app/" }
+    ],
+  },
+  {
     title: "PoseMind AI: Contextual Yoga Recommender",
     image: "/project3.png",
     alt: "PoseMindAI",
