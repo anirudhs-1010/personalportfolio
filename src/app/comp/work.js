@@ -4,12 +4,24 @@ import Image from "next/image";
 const experiences = [
   {
     title: "Incoming Software Engineering Intern",
+    company: "Warmly",
+    companyUrl: "https://warmly.ai",
+    logo: "/warmly.png",
+    date: "June 2025-Current",
+  },
+  {
+    title: "Software Engineering Intern",
     company: "Venu AI",
     companyUrl: "https://www.venu3d.com/",
     logo: "/venu3d_logo.jpeg",
-    date: "Summer 2025 - Current",
+    date: "May 2025 - June 2025",
     subtitle: "YC W21",
+    bullets: [
+      "Implemented authentication for user access to the dashboard feature, enhancing security and user experience",
+      "Designed Toastify notification feature for CSV processing and email generation, improving user awareness and workflow efficiency"
+    ],
   },
+  
   {
     title: "Software and Systems Development Intern",
     company: "Trydan Tech",
@@ -36,7 +48,6 @@ const experiences = [
       "Enhanced understanding of infrastructure, cloud offerings, and DevOps as code concepts, leading to the development of more effective cloud security solutions"
     ],
   },
-  
 ];
 
 export default function Experience() {
