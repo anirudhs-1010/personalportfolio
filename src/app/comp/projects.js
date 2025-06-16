@@ -122,8 +122,8 @@ const ProjectCard = ({ project, idx }) => {
               <Image
                 src={project.images[currentImageIndex].src}
                 alt={project.images[currentImageIndex].alt}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: "cover" }}
                 className="transition-all duration-500"
               />
             </motion.div>
@@ -132,8 +132,8 @@ const ProjectCard = ({ project, idx }) => {
           <Image
             src={project.image}
             alt={project.alt}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             className="transition-transform duration-300"
           />
         )}

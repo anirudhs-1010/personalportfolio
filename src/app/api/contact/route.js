@@ -1,5 +1,6 @@
 import { cookies, headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 // Store rate limiting data in memory (consider using Redis in production)
 const rateLimit = new Map();
@@ -55,8 +56,20 @@ const validateFormId = (formId) => {
   return (now - timestamp) < 24 * 60 * 60;
 };
 
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function POST(request) {
   try {
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email configuration is incomplete' },
+        { status: 500 }
+      );
+    }
+
     const headersList = await headers();
     const cookieStore = cookies();
     
@@ -209,31 +222,37 @@ export async function POST(request) {
       );
     }
 
-    // Send to Discord webhook
-    const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
-    if (!discordWebhookUrl) {
-      console.error('Discord webhook URL not configured');
+    // Send email using Resend
+    try {
+      const { data, error } = await resend.emails.send({
+        from: 'Portfolio Contact Form <onboarding@resend.dev>',
+        to: process.env.NOTIFICATION_EMAIL,
+        subject: 'New Contact Form Submission',
+        text: `New form submission:\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${sanitizedName}</p>
+          <p><strong>Email:</strong> ${sanitizedEmail}</p>
+        `,
+      });
+
+      if (error) {
+        console.error('Resend error:', error);
+        return NextResponse.json(
+          { error: 'Failed to send email notification' },
+          { status: 500 }
+        );
+      }
+
+      console.log('Email sent successfully:', data);
+      return NextResponse.json({ success: true });
+    } catch (emailError) {
+      console.error('Error sending email:', emailError);
       return NextResponse.json(
-        { error: 'Server configuration error' },
+        { error: 'Failed to send email notification' },
         { status: 500 }
       );
     }
-
-    const response = await fetch(discordWebhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        content: `New form submission:\nName: ${sanitizedName}\nEmail: ${sanitizedEmail}`,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to send to Discord');
-    }
-
-    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error processing contact form:', error);
     return NextResponse.json(

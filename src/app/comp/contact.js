@@ -2,8 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 
 // Generate a stable form ID that won't change between server and client
 const generateStableId = () => {
-  // Use a fixed string for the form ID
-  return `contact_form_${process.env.NODE_ENV}`;
+  // Use a fixed timestamp for the current day
+  const today = new Date();
+  const timestamp = Math.floor(today.setHours(0, 0, 0, 0) / 1000);
+  return `form_${timestamp}_${process.env.NODE_ENV}`;
 };
 
 const ContactForm = () => {
@@ -18,7 +20,7 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState('');
   const [nonce, setNonce] = useState('');
-  const [formId] = useState(generateStableId);
+  const [formId] = useState(() => generateStableId());
 
   // Generate CSRF token and nonce on component mount
   useEffect(() => {
