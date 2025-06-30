@@ -4,9 +4,9 @@ const certifications = [
   {
     title: "Section Leader",
     issuer: "CodeInPlace",
-    date: "Status: In progress",
-    badgeUrl: "/codeinplace.png",
-    verifyUrl: "/CodeInPlaceConf.png", 
+    date: "Issued: June 30, 2025",
+    badgeUrl: "/badge.svg",
+    verifyUrl: "https://digitalcredential.stanford.edu/check/B3B501C94C95F464F81EF6ECB29755931C6B950A045D717210009DA74423FC8FZXliMUU2eXRTTzVZTVNwcDVxUHBkZThIYllob2ZEK3JOcmlDQVlNRktuSnpzbVV5", 
   },
   {
     title: "Cybersecurity (CY102)",
