@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const experiences = [
   {
-    title: "Incoming Software Engineering Intern",
+    title: "Software Engineering Intern",
     company: "Warmly",
     companyUrl: "https://warmly.ai",
     logo: "/warmly.png",
