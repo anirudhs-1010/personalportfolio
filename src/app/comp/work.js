@@ -9,18 +9,7 @@ const experiences = [
     logo: "/warmly.png",
     date: "June 2025-Current",
   },
-  {
-    title: "Software Engineering Intern",
-    company: "Venu AI",
-    companyUrl: "https://www.venu3d.com/",
-    logo: "/venu3d_logo.jpeg",
-    date: "May 2025 - June 2025",
-    subtitle: "YC W21",
-    bullets: [
-      "Implemented authentication for user access to the dashboard feature, enhancing security and user experience",
-      "Designed Toastify notification feature for CSV processing and email generation, improving user awareness and workflow efficiency"
-    ],
-  },
+
   
   {
     title: "Software and Systems Development Intern",
