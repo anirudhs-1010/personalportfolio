@@ -6,13 +6,33 @@ import { useEffect, useState } from "react";
 function AutoCarousel() {
   const images = ["/mecs1.jpeg", "/mecs2.jpeg"];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Show first image during SSR to prevent hydration mismatch
+  if (!isClient) {
+    return (
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={images[0]}
+          alt="Background slide 1"
+          fill
+          style={{ objectFit: "cover" }}
+          className="z-0"
+          priority
+        />
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-10" />
+      </div>
+    );
+  }
 
   return (
     <div className="absolute inset-0 w-full h-full">
