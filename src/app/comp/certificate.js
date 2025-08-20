@@ -9,11 +9,11 @@ const certifications = [
     verifyUrl: "https://digitalcredential.stanford.edu/check/B3B501C94C95F464F81EF6ECB29755931C6B950A045D717210009DA74423FC8FZXliMUU2eXRTTzVZTVNwcDVxUHBkZThIYllob2ZEK3JOcmlDQVlNRktuSnpzbVV5", 
   },
   {
-    title: "Cybersecurity (CY102)",
+    title: "Cybersecurity (CYB102)",
     issuer: "CodePath",
-    date: "Status: In progress",
+    date: "Issued: August 19, 2025",
     badgeUrl: "/codepath_org_logo.jpg",
-    verifyUrl: "/Cybersecurity.png", 
+    verifyUrl: "/CYB102.pdf", 
   },
   {
     title: "Technical Interview Prep (TIP 102)",
