@@ -18,9 +18,9 @@ const certifications = [
   {
     title: "Technical Interview Prep (TIP 102)",
     issuer: "CodePath",
-    date: "Status: In progress",
+    date: "Issued: August 20, 2025",
     badgeUrl: "/codepath_org_logo.jpg",
-    verifyUrl: "/TIP.png", 
+    verifyUrl: "/TIP102.pdf", 
   },
   {
     title: "Ignite 2025",

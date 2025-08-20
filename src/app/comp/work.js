@@ -7,7 +7,9 @@ const experiences = [
     company: "Warmly",
     companyUrl: "https://warmly.ai",
     logo: "/warmly.png",
-    date: "June 2025-Current",
+    date: "June 2025-August 2025",
+    subtitle: "YC S20",
+    bullets: ["Implemented Salesflow email integration with Typescript to optimize customer outreach", "Integrated and developed CRM system in React, Postgres, and SQL to simulate sales team interactions"]
   },
 
   
