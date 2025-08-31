@@ -79,22 +79,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="w-full"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-6">
-            Software Developer
-          </h1>
-          <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium drop-shadow">
-            Creating innovative solutions with experience in backend development, cloud technologies, hardware, and AI. 
-            Seeking internships as an undergraduate student at UIUC.
-          </p>
-          <motion.a
-            href="#projects"
-            className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 py-3 px-8 rounded-full text-lg font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400"
-            whileHover={{ scale: 1.07 }}
-            whileTap={{ scale: 0.97 }}
-            aria-label="View my work"
-          >
-            View My Work
-          </motion.a>
+
         </motion.div>
       </div>
     </section>

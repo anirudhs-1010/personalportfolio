@@ -3,6 +3,20 @@ import Image from "next/image";
 
 const experiences = [
   {
+    title: "Data Analyst Intern",
+    company: "National Center for Supercomputing Applications",
+    companyUrl: "https://ncsa.illinois.edu",
+    logo: "/ncsa-logo.png",
+    date: "Fall 2025",
+    bullets: [
+      "Preprocessed geospatial and socioeconomic feature data for the Amazon in Brazil, enhancing data quality for subsequent analysis",
+      "Conducted data modeling, analysis, and predictive assessments, providing insights for decision-making processes",
+      "Created maps and other data visualizations with Python, facilitating better understanding of complex data sets",
+      "Assisted in the development, training, validation, and testing of machine learning algorithms, improving model accuracy and performance"
+    ]
+  },
+  
+  {
     title: "Software Engineering Intern",
     company: "Warmly",
     companyUrl: "https://warmly.ai",
