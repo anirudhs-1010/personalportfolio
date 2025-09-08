@@ -82,7 +82,7 @@ export default function About() {
           
           <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
             <motion.a
-              href="/AnirudhSunil_Resume.pdf"
+              href="/AnirudhS_Resume.pdf"
               className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-8 rounded-full font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-400"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.97 }}
