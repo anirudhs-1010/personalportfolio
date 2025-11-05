@@ -25,7 +25,7 @@ const certifications = [
   {
     title: "Ignite 2025",
     issuer: "AI4ALL",
-    date: "Status: In progress",
+    date: "Completed: November 4, 2025",
     badgeUrl: "/ai4all-logo.png",
     verifyUrl: "/Anirudh Sunil Summer 2025 AI4ALL Ignite Program Completion Certificate.pdf", 
   },
