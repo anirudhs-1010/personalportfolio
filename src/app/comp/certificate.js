@@ -27,7 +27,7 @@ const certifications = [
     issuer: "AI4ALL",
     date: "Status: In progress",
     badgeUrl: "/ai4all-logo.png",
-    verifyUrl: "/AI4ALL.jpeg", 
+    verifyUrl: "/Anirudh Sunil Summer 2025 AI4ALL Ignite Program Completion Certificate.pdf", 
   },
   
   {
