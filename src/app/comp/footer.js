@@ -11,7 +11,7 @@ const socialLinks = [
     ),
   },
   {
-    href: "https://www.linkedin.com/in/anirudh-sunil-a9890720a/",
+    href: "https://www.linkedin.com/in/anirudh-sunil",
     label: "LinkedIn",
     svg: (
       <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
