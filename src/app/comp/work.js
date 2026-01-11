@@ -3,54 +3,53 @@ import Image from "next/image";
 
 const experiences = [
   {
+    title: "Research Assistant",
+    company: "University of Chicago",
+    companyUrl: "https://www.uchicago.edu",
+    logo: "/uchicago.jpg",
+    date: "Jan. 2026 - May 2026",
+    bullets: [
+      "Improve scientific artifact discoverability and reproducibility for Trovi by discovering, evaluating, and integrating research artifacts",
+      "Normalize metadata and write concise summaries to enhance data accessibility and utility",
+      "Engage with authors, refine curation tools, and analyze coverage and trends to support the Chameleon project"
+    ]
+  },
+  {
     title: "Data Analyst Intern",
     company: "National Center for Supercomputing Applications",
     companyUrl: "https://ncsa.illinois.edu",
     logo: "/ncsa-logo.png",
-    date: "Fall 2025",
+    date: "Aug. 2025 - Dec. 2025",
     bullets: [
-      "Preprocessed geospatial and socioeconomic feature data for the Amazon in Brazil, enhancing data quality for subsequent analysis",
-      "Conducted data modeling, analysis, and predictive assessments, providing insights for decision-making processes",
-      "Created maps and other data visualizations with Python, facilitating better understanding of complex data sets",
-      "Assisted in the development, training, validation, and testing of machine learning algorithms, improving model accuracy and performance"
+      "Preprocessed geospatial and socioeconomic feature data for the Amazon in Brazil, enhancing data quality for analysis.",
+      "Conducted data modeling, analysis, and predictive assessments to provide insights for decision-making processes.",
+      "Created maps and other data visualizations with Python, facilitating better understanding of complex data sets.",
+      "Assisted in the development, training, validation, and testing of machine learning algorithms, improving model accuracy."
     ]
   },
-  
   {
-    title: "Software Engineering Intern",
+    title: "Software Engineer Intern",
     company: "Warmly",
     companyUrl: "https://warmly.ai",
     logo: "/warmly.png",
-    date: "June 2025-August 2025",
+    date: "Jun. 2025 - Aug. 2025",
     subtitle: "YC S20",
-    bullets: ["Implemented Salesflow email integration with Typescript to optimize customer outreach", "Integrated and developed CRM system in React, Postgres, and SQL to simulate sales team interactions"]
-  },
-
-  
-  {
-    title: "Software and Systems Development Intern",
-    company: "Trydan Tech",
-    companyUrl: "https://trydantech.com",
-    logo: "/trdtech.jpg",
-    date: "Summer 2024",
     bullets: [
-      "Leveraged CAN communication protocols in Python using cantools modules to collect data for the EV scooter division XSTRAD, ensuring accurate testing with Synchronous Reluctance motor via Raspberry Pi's SPI interface and 2CH CAN FD HAT, which improved data accuracy and testing efficiency",
-      "Decoded bits from a DBC file and organized data in a CSV format, facilitating effective analysis and identification of correlations among parameters such as speed, temperature, and phase current, which enhanced data-driven decision-making",
-      "Collaborated with peers to analyze 10,000 data points across 26 motor variables, improving code review and quality assurance practices through detailed analysis and teamwork, which led to enhanced software reliability and performance"
-    ],
+      "Implemented Salesflow email integration with TypeScript to optimize customer outreach by 87%.",
+      "Integrated CRM system with React, Postgres, and SQL to simulate sales team interactions with Redis server for authentication, improving data management."
+    ]
   },
   {
-    title: "Software Engineering Intern - Cloud Security",
-    company: "Prancer.io",
+    title: "Software Engineer Intern - Cloud Security",
+    company: "Prancer Enterprises",
     companyUrl: "https://prancer.io",
     logo: "/prancer_io_logo.jpg",
-    date: "Summer 2022",
+    date: "Jun. 2022 - Aug. 2022",
     bullets: [
-      "Debugged Amazon Web Services S3 buckets and permissions to organize configuration layout, improving data access efficiency",
-      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of pod clusters, containers, and nodes",
-      "Established secure connections to regulate SQL databases, successfully preventing injection attacks and ensuring data integrity",
-      "Utilized Shift Left Security tools such as Burp Suite proxy, OWASP ZAP, and DirBuster to secure websites, reducing vulnerabilities and enhancing security posture",
-      "Enhanced understanding of infrastructure, cloud offerings, and DevOps as code concepts, leading to the development of more effective cloud security solutions"
+      "Configured AWS S3 buckets to organize layout, improving data access efficiency by 130%.",
+      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of clusters and nodes.",
+      "Established secure connections to regulate SQL databases, successfully preventing 10 injection attacks.",
+      "Utilized Shift Left Security tools (Burp Suite, OWASP ZAP, DirBuster) to secure websites and reduce vulnerabilities."
     ],
   },
 ];
