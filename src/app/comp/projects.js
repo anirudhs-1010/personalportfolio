@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 
 const projectList = [
   {
+    title: "StackSnap",
+    image: "/stacksnap.png",
+    alt: "StackSnap Interactive Program Visualizer",
+    description: `Built an AI-powered interactive debugger that visualizes Python code execution line-by-line. Engineered a custom execution engine using sys.settrace to capture real-time call stack frames and local variable data across multi-file projects. Integrated a context-aware AI assistant using LangChain and the Keywords AI API for intelligent debugging explanations.`,
+    links: [
+      { label: "View Devpost", url: "https://devpost.com/software/stacksnap" }
+    ],
+  },
+  {
     title: "Rankd",
     images: [
       { src: "/RankdTitle.png", alt: "Rankd Title" },
@@ -21,7 +30,7 @@ const projectList = [
     alt: "LLMJudge",
     description: `Developed a web app with Firebase, TypeScript, and Tailwind CSS that benchmarks prompts and LLM outputs on length and tone. Evaluated Gemini 2.0 Flash output with Perplexity Sonar, R1-1776, and Llama 3 with API calls and optimized. Stored data for prior prompts and scores in CSV and visualized overall evaluation scores with bar chart.`,
     links: [
-      { label: "View Website", url: "https://studio--llm-judge-4sh1r.us-central1.hosted.app/" }
+      { label: "View Report", url: "https://docs.google.com/document/d/1wrk6cF1x7S4MGi8fIVRtPpGYMdgBNww8AWKHi46GIoA/edit?usp=sharing" }
     ],
   },
   {
