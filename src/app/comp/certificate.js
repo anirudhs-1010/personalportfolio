@@ -45,7 +45,7 @@ const certifications = [
     verifyUrl: "/2024-ICPC North Central NA RC-Anirudh Sunil-PLACE.pdf", 
   },
   {
-    title: "USACO Silver",
+    title: "USACO Gold",
     issuer: "USA Computing Olympiad",
     badgeUrl: "/logo-usaco.png",
     verifyUrl: "/usaco.png", 
