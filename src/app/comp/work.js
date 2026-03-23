@@ -3,6 +3,14 @@ import Image from "next/image";
 
 const experiences = [
   {
+    title: "Software Development Engineer Intern",
+    company: "Amazon",
+    companyUrl: "https://www.amazon.com",
+    logo: "/zon.jpg",
+    date: "Summer 2026",
+    bullets: ["Working with the Stores team at Sunnyvale"]
+  },
+  {
     title: "Research Assistant",
     company: "University of Chicago",
     companyUrl: "https://www.uchicago.edu",
@@ -72,7 +80,7 @@ export default function Experience() {
               viewport={{ once: true }}
             >
               {/* Company Logo */}
-              <div className="flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-[#223056] flex items-center justify-center shadow">
+              <div className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden flex items-center justify-center shadow ${exp.company === 'Amazon' ? 'bg-white p-1' : 'bg-[#223056]'}`}>
                 <Image
                   src={exp.logo}
                   alt={`${exp.company} logo`}
