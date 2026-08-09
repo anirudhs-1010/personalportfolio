@@ -49,9 +49,9 @@ export default function About() {
           viewport={{ once: true }}
         >
           <p className="text-lg md:text-xl mb-5 text-gray-100 font-medium">
-            I&apos;m a <span className="text-blue-400 font-semibold">passionate software engineer</span> specializing in <span className="text-purple-400 font-semibold">AI</span> and <span className="text-pink-400 font-semibold">security</span>. Currently, I am pursuing a Bachelor of Science in Mathematics and Computer Science at UIUC, graduating Dec. 2026.
+            Hey, I&apos;m Anirudh. Currently I&apos;m completing my Bachelor&apos;s in Mathematics and Computer Science at UIUC, graduating Dec. 2026.
           </p>
-          
+
           {/* Social Links */}
           <div className="flex justify-center md:justify-start space-x-6 mb-6">
             <motion.a
@@ -75,14 +75,34 @@ export default function About() {
               className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
             >
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </motion.a>
+            <motion.a
+              href="https://codeforces.com/profile/Pogzival"
+              aria-label="Codeforces"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 flex items-center justify-center"
+            >
+              <Image src="/codeforces-svgrepo-com.svg" alt="Codeforces" width={32} height={32} className="opacity-70 hover:opacity-100 transition-opacity invert" />
+            </motion.a>
+            <motion.a
+              href="https://tryhackme.com/p/anirudhs1010"
+              aria-label="TryHackMe"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 flex items-center justify-center"
+            >
+              <Image src="/Tryhackme--Streamline-Simple-Icons.svg" alt="TryHackMe" width={32} height={32} className="opacity-70 hover:opacity-100 transition-opacity invert" />
+            </motion.a>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start">
             <motion.a
-              href="/Resume.pdf"
+              href="/My_Resume__NG_.pdf"
               className="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-8 rounded-full font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-400"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.97 }}

@@ -8,7 +8,12 @@ const experiences = [
     companyUrl: "https://www.amazon.com",
     logo: "/zon.jpg",
     date: "Summer 2026",
-    bullets: ["Working with the Stores team at Sunnyvale"]
+    bullets: [
+      "Built a distributed Java Remote Strategy Service handling∼9K TPS with a 120 ms production latency SLA for recommendation widgets on Amazon Sports & Outdoors product pages.",
+      "Architected a modular strategy framework supporting N strategy IDs per implementation, reducing new strategy integration to 1 annotated class with automatic runtime discovery.",
+      "Migrated the service to AWS Fargate, provisioning 8+ production infrastructure components including CloudAuth, PrivateLink, autoscaling, load balancing, and monitoring.",
+      "Resolved 20+ dependency, authentication, and build issues from previous iteration for successful production deployment."
+    ]
   },
   {
     title: "Research Assistant",
@@ -47,19 +52,7 @@ const experiences = [
       "Integrated CRM system with React, Postgres, and SQL to simulate sales team interactions with Redis server for authentication, improving data management."
     ]
   },
-  {
-    title: "Software Engineer Intern - Cloud Security",
-    company: "Prancer Enterprises",
-    companyUrl: "https://prancer.io",
-    logo: "/prancer_io_logo.jpg",
-    date: "Jun. 2022 - Aug. 2022",
-    bullets: [
-      "Configured AWS S3 buckets to organize layout, improving data access efficiency by 130%.",
-      "Reconfigured Kubernetes pods to optimize resource allocation, enhancing the performance of clusters and nodes.",
-      "Established secure connections to regulate SQL databases, successfully preventing 10 injection attacks.",
-      "Utilized Shift Left Security tools (Burp Suite, OWASP ZAP, DirBuster) to secure websites and reduce vulnerabilities."
-    ],
-  },
+
 ];
 
 export default function Experience() {
@@ -94,7 +87,7 @@ export default function Experience() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
                   <div>
                     <h4 className="text-lg font-semibold text-blue-300">{exp.title}</h4>
-                    <a 
+                    <a
                       href={exp.companyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
