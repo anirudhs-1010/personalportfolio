@@ -7,7 +7,7 @@ const experiences = [
     company: "Amazon",
     companyUrl: "https://www.amazon.com",
     logo: "/zon.jpg",
-    date: "Summer 2026",
+    date: "May 2026 - August 2026",
     bullets: [
       "Built a distributed Java Remote Strategy Service handling∼9K TPS with a 120 ms production latency SLA for recommendation widgets on Amazon Sports & Outdoors product pages.",
       "Architected a modular strategy framework supporting N strategy IDs per implementation, reducing new strategy integration to 1 annotated class with automatic runtime discovery.",
