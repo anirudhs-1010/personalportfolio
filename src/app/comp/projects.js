@@ -21,7 +21,7 @@ const projectList = [
     ],
     description: `Built using Supabase, NextJS, and Tailwind. Used ELO algorithm to calculate rankings for companies and characters for leaderboard display. Currently has 150+ users and more than 500+ games played.`,
     links: [
-      { label: "View Website", url: "https://rankdgame.vercel.app/" }
+      { label: "View Code", url: "https://github.com/anirudhs1010/rankd" }
     ],
   },
   {
