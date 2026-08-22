@@ -9,7 +9,7 @@ const navLinks = [
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
-  { name: 'Resume', href: '/AnirudhS__Resume.pdf', external: true },
+  { name: 'Resume', href: '/My_Resume__AnirudhSunil.pdf', external: true },
 ];
 
 export default function Header() {
