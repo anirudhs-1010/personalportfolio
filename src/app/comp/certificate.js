@@ -2,6 +2,13 @@ import { motion } from "framer-motion";
 
 const certifications = [
   {
+    title: "SPIN Internship Recognition",
+    issuer: "National Center for Supercomputing Applications",
+    date: "Issued: May 20, 2026",
+    badgeUrl: "/ncsa-logo.png",
+    verifyUrl: "/Anirudh Sunil_NCSA Recognition Letter_AY 2025-26.pdf",
+  },
+  {
     title: "Section Leader",
     issuer: "CodeInPlace",
     date: "Issued: June 30, 2025",
@@ -30,13 +37,6 @@ const certifications = [
     verifyUrl: "/Anirudh Sunil Summer 2025 AI4ALL Ignite Program Completion Certificate.pdf", 
   },
   
-  {
-    title: "Intro to Machine Learning",
-    issuer: "Kaggle",
-    date: "Issued: March 9, 2024",
-    badgeUrl: "/Kaggle.png",
-    verifyUrl: "https://www.kaggle.com/learn/certification/anirudhs10/intro-to-machine-learning", 
-  },
   {
     title: "Certificate of Acheivement",
     issuer: "ICPC",
