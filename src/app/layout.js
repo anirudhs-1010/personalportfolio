@@ -1,34 +1,9 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Geist_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  // optional: expose as a CSS var
-  variable: "--font-montserrat",
-  // optional: pick weights
-  // weight: ["400", "700"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata = {
-  title: "Portfolio Site",
-  description: "Made by Anirudh",
+  title: "Anirudh Sunil — Software & Mathematics",
+  description: "Projects, research, and experience by Anirudh Sunil, Mathematics and Computer Science student at UIUC.",
 };
-
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${montserrat.className} ${geistMono.variable} antialiased `}
-      >
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
+  return <html lang="en"><body>{children}<Analytics /></body></html>;
 }

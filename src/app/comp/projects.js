@@ -1,6 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+"use client";
+import Image from 'next/image';
+import { useState } from 'react';
 
 const projectList = [
   {
@@ -34,30 +34,6 @@ const projectList = [
     ],
   },
   {
-    title: "PoseMind AI: Contextual Yoga Recommender",
-    image: "/project3.png",
-    alt: "PoseMindAI",
-    description: `Developed a contextual Yoga Pose recommender app using Firestore, Vector Search, Langchain, and Gemini to deliver personalized pose
-suggestions based on user input. Implemented vector search and AI-generated embeddings to enable natural language querying and efficient retrieval of yoga pose
-recommendations. Designed and deployed a user-friendly web application with AI capabilities, integrating text, images, and audio for an enhanced user
-experience.`,
-    links: [
-      { label: "View Code", url: "https://github.com/anirudhs1010/Posemind-ai" }
-    ],
-  },
-  {
-    title: "Medicina.ai",
-    image: "/project1.png",
-    alt: "Medicina.ai",
-    description: `Designed web app with Python and Flask to update heart disease risk using linear regression on user input data.
-Stores data in SQL database for login data and local user data and continuously updates visual chart to display user risk for diabetes and
-heart disease.
-Implemented LLM chatbot feature using Gemini API for real-time communication with user.`,
-    links: [
-      { label: "View Code", url: "https://github.com/anirudhs1010/Medicina.ai" }
-    ],
-  },
-  {
     title: "Quantitative Analysis of Protein Structure",
     image: "/project2.png",
     alt: "Protein Structure Analysis",
@@ -70,115 +46,16 @@ SSNMR EmRe protein data with ZNCC scores using Python and Bash scripts.`,
   // Add more projects here as needed
 ];
 
-const ProjectCard = ({ project, idx }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  useEffect(() => {
-    if (project.images && project.images.length > 1) {
-      const interval = setInterval(() => {
-        setDirection(1);
-        setCurrentImageIndex((prevIndex) => 
-          prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
-        );
-      }, 4000); // Changed to 4 seconds
-
-      return () => clearInterval(interval);
-    }
-  }, [project.images]);
-
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      opacity: 1
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      x: direction < 0 ? "100%" : "-100%",
-      opacity: 1
-    })
-  };
-
-  return (
-    <motion.div
-      key={project.title}
-      className="bg-[#1a233a] rounded-2xl overflow-hidden shadow-lg border border-[#223056] flex flex-col hover:shadow-2xl transition-shadow"
-      initial={{ opacity: 0, y: 30, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8, scale: 1.02 }}
-    >
-      <div className="h-48 bg-gray-700 relative overflow-hidden">
-        {project.images ? (
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={currentImageIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                duration: 0.5
-              }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={project.images[currentImageIndex].src}
-                alt={project.images[currentImageIndex].alt}
-                fill
-                style={{ objectFit: "cover" }}
-                className="transition-all duration-500"
-              />
-            </motion.div>
-          </AnimatePresence>
-        ) : (
-          <Image
-            src={project.image}
-            alt={project.alt}
-            fill
-            style={{ objectFit: "cover" }}
-            className="transition-transform duration-300"
-          />
-        )}
-      </div>
-      <div className="p-6 flex flex-col flex-1">
-        <h4 className="text-lg font-bold mb-2 text-blue-300">{project.title}</h4>
-        <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
-        <div className="flex gap-4 mt-auto">
-          {project.links.map((link, i) => (
-            <a
-              key={i}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-200 font-medium transition-colors underline underline-offset-2"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
+function ProjectCard({ project, idx }) {
+  const [active, setActive] = useState(0);
+  const images = project.images || [{ src: project.image, alt: project.alt }];
+  return <article className="project">
+    <div className="project-visual"><Image src={images[active].src} alt={images[active].alt} fill sizes="(max-width: 700px) 90vw, 50vw" />
+    {images.length > 1 && <div className="image-controls" aria-label={`${project.title} screenshots`}>{images.map((img, i) => <button key={img.src} onClick={() => setActive(i)} aria-label={`Show ${img.alt}`} aria-pressed={active === i}>{String(i + 1).padStart(2, '0')}</button>)}</div>}</div>
+    <div className="project-heading"><span className="index">{String(idx + 1).padStart(2, '0')}</span><h3>{project.title}</h3></div>
+    <p>{project.description}</p><div className="project-links">{project.links.map(link => <a className="text-link" href={link.url} key={link.url} target="_blank" rel="noreferrer">{link.label} ↗</a>)}</div>
+  </article>;
+}
 export default function Projects() {
-  return (
-    <section id="projects" className="container mx-auto py-20 px-4 ">
-      <h3 className="text-3xl md:text-4xl font-extrabold mb-14 text-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
-        Projects
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projectList.map((project, idx) => (
-          <ProjectCard key={project.title} project={project} idx={idx} />
-        ))}
-      </div>
-    </section>
-  );
+  return <section id="projects" className="section shell"><div className="section-heading"><p className="eyebrow">01 / Selected work</p><h2>Things I’ve built.</h2></div><div className="project-grid">{projectList.map((project, idx) => <ProjectCard key={project.title} project={project} idx={idx} />)}</div></section>;
 }

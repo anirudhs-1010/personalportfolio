@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useState } from "react";
 
 // Generate a stable form ID that won't change between server and client
@@ -228,12 +229,12 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="rounded-3xl shadow-2xl max-w-2xl mx-auto p-8 md:p-12 bg-[#172030]">
-      <h2 className="mb-2 text-4xl tracking-tight font-extrabold text-center bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 bg-clip-text text-transparent drop-shadow-lg">
-        Contact
+    <section className="contact-inner">
+      <h2 className="contact-title">
+        Let’s get in touch.
       </h2>
-      <p className="mb-8 font-light text-center text-gray-300 sm:text-lg">
-        Thank you for your interest. Please fill out this form to get in contact with me!
+      <p className="contact-description">
+        Have something in mind? Leave your name and email so I can get back to you.
       </p>
       <form 
         onSubmit={handleSubmit} 
@@ -245,13 +246,13 @@ const ContactForm = () => {
         <input type="hidden" name="nonce" value={nonce} />
         <input type="hidden" name="form_id" value={formId} />
         <div>
-          <label className="block mb-2 text-sm font-medium text-blue-400" htmlFor="name">
+          <label className="form-label" htmlFor="name">
             Name
           </label>
           <input
-            className={`shadow-sm bg-gray-800 border ${
-              errors.name ? 'border-red-500' : 'border-blue-400'
-            } text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 transition`}
+            className={`form-input ${
+              errors.name ? 'input-error' : ''
+            }` }
             autoComplete="off"
             name="name"
             id="name"
@@ -265,17 +266,17 @@ const ContactForm = () => {
             pattern="[a-zA-Z\s]*"
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name}</p>
+            <p className="mt-1 text-sm text-red-300">{errors.name}</p>
           )}
         </div>
         <div>
-          <label className="block mb-2 text-sm font-medium text-blue-400" htmlFor="email">
+          <label className="form-label" htmlFor="email">
             Email
           </label>
           <input
-            className={`shadow-sm bg-gray-800 border ${
-              errors.email ? 'border-red-500' : 'border-blue-400'
-            } text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 transition`}
+            className={`form-input ${
+              errors.email ? 'input-error' : ''
+            }` }
             autoComplete="off"
             name="email"
             id="email"
@@ -288,19 +289,17 @@ const ContactForm = () => {
             maxLength={254}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+            <p className="mt-1 text-sm text-red-300">{errors.email}</p>
           )}
         </div>
         <div className="flex justify-center">
           <button
             type="submit"
             disabled={loading}
-            className={`w-full sm:w-[180px] h-[56px] bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-lg font-semibold text-white shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all flex items-center justify-center ${
-              loading ? "opacity-60 cursor-not-allowed" : ""
-            }`}
+            className="button contact-submit"
           >
             {loading ? (
-              <svg className="animate-spin h-6 w-6 text-white" viewBox="0 0 24 24">
+              <svg className="animate-spin h-6 w-6" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
                   cx="12"
@@ -328,7 +327,8 @@ const ContactForm = () => {
 
 export default function ContactForms() {
   return (
-    <section id="contact" className="container mx-auto py-20 px-4">
+    <section id="contact" className="section shell contact-section">
+      <p className="eyebrow">04 / Contact</p>
       <ContactForm />
     </section>
   );
