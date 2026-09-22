@@ -2,7 +2,7 @@ const experiences = [
   {
     title: "Software Development Engineer Intern",
     company: "Amazon",
-    companyUrl: "https://www.amazon.com",
+    companyUrl: "https://www.amazon.com/gp/browse.html?node=3375251&ref_=nav_em__sa_sp_allsport_0_2_25_2",
     logo: "/zon.jpg",
     date: "May 2026 - August 2026",
     bullets: [
