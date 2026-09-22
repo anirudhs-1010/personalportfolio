@@ -80,4 +80,4 @@ h2, .contact-title { font-family: Georgia, 'Times New Roman', serif; font-weight
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
 
 .social-links a { display: inline-flex; align-items: center; gap: 7px; }
-.social-links svg { flex-shrink: 0; }
+.social-links svg { width: 40px; height: 40px; flex-shrink: 0; }
