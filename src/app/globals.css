@@ -30,7 +30,7 @@ h1 em { color: var(--accent); font-weight: 400; }
 .button:hover { background: var(--accent); border-color: var(--accent); color: var(--background); }
 .button:disabled { opacity: .6; cursor: wait; }
 .text-link { font-size: 13px; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #737b70; }
-.social-links { display: flex; flex-wrap: wrap; gap: 19px; margin-top: 35px; color: var(--muted); font-size: 11px; }
+.social-links { display: flex; flex-wrap: wrap; gap: 50px; margin-top: 35px; color: var(--muted); font-size: 11px; }
 .portrait { margin: 30px 0 0; width: 100%; max-width: 340px; justify-self: end; }
 .portrait-image { position: relative; aspect-ratio: 4/5; background: #242824; }
 .portrait-image img { object-fit: cover; }
