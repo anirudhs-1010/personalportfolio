@@ -1,6 +1,6 @@
 "use client";
 import { useState } from 'react';
-const links = [['Work', '#projects'], ['Experience', '#experience'], ['Contact', '#contact'], ['Résumé ↗', '/MyResumeAS.pdf']];
+const links = [['Work', '#projects'], ['Experience', '#experience'], ['Contact', '#contact'], ['Résumé', '/MyResumeAS.pdf']];
 export default function Header() {
   const [open, setOpen] = useState(false);
   return <header className="site-header shell">

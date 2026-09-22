@@ -53,7 +53,7 @@ function ProjectCard({ project, idx }) {
     <div className="project-visual"><Image src={images[active].src} alt={images[active].alt} fill sizes="(max-width: 700px) 90vw, 50vw" />
     {images.length > 1 && <div className="image-controls" aria-label={`${project.title} screenshots`}>{images.map((img, i) => <button key={img.src} onClick={() => setActive(i)} aria-label={`Show ${img.alt}`} aria-pressed={active === i}>{String(i + 1).padStart(2, '0')}</button>)}</div>}</div>
     <div className="project-heading"><span className="index">{String(idx + 1).padStart(2, '0')}</span><h3>{project.title}</h3></div>
-    <p>{project.description}</p><div className="project-links">{project.links.map(link => <a className="text-link" href={link.url} key={link.url} target="_blank" rel="noreferrer">{link.label} ↗</a>)}</div>
+    <p>{project.description}</p><div className="project-links">{project.links.map(link => <a className="text-link" href={link.url} key={link.url} target="_blank" rel="noreferrer">{link.label}</a>)}</div>
   </article>;
 }
 export default function Projects() {

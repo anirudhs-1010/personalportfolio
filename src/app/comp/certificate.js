@@ -58,5 +58,5 @@ const certifications = [
 ];
 
 export default function CertificationCards() {
-  return <section className="section shell" id="recognition"><div className="section-heading"><p className="eyebrow">03 / Recognition</p><h2>Along the way.</h2></div><div className="recognition-list">{certifications.map(cert => <a href={cert.verifyUrl} key={cert.title} target="_blank" rel="noreferrer"><span><strong>{cert.title}</strong><small>{cert.issuer}</small></span><span className="recognition-date">{cert.date}</span><span aria-hidden="true">↗</span></a>)}</div></section>;
+  return <section className="section shell" id="recognition"><div className="section-heading"><p className="eyebrow">03 / Recognition</p><h2>Along the way.</h2></div><div className="recognition-list">{certifications.map(cert => <a href={cert.verifyUrl} key={cert.title} target="_blank" rel="noreferrer"><span><strong>{cert.title}</strong><small>{cert.issuer}</small></span><span className="recognition-date">{cert.date}</span></a>)}</div></section>;
 }

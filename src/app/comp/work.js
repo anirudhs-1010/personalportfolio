@@ -53,5 +53,5 @@ const experiences = [
 ];
 
 export default function Experience() {
-  return <section id="experience" className="section shell"><div className="section-heading"><p className="eyebrow">02 / Experience</p><h2>Where I’ve worked.</h2></div><div className="experience-list">{experiences.map(exp => <article className="experience" key={exp.company}><div className="experience-meta"><p>{exp.date}</p>{exp.subtitle && <span>{exp.subtitle}</span>}</div><div><a className="company" href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company} ↗</a><h3>{exp.title}</h3><ul>{exp.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}</div></section>;
+  return <section id="experience" className="section shell"><div className="section-heading"><p className="eyebrow">02 / Experience</p><h2>Where I’ve worked.</h2></div><div className="experience-list">{experiences.map(exp => <article className="experience" key={exp.company}><div className="experience-meta"><p>{exp.date}</p>{exp.subtitle && <span>{exp.subtitle}</span>}</div><div><a className="company" href={exp.companyUrl} target="_blank" rel="noreferrer">{exp.company}</a><h3>{exp.title}</h3><ul>{exp.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul></div></article>)}</div></section>;
 }
